@@ -42,7 +42,7 @@ const SignUpDesign = () => {
         <h1 className="uppercase text-center text-3xl font-bold my-5">
           sign up
         </h1>
-        <div className="border border-gray-300 p-10">
+        <div className="border-2 border-gray-400 p-10">
           <form onSubmit={handleSubmit}>
             {/* first and last name section */}
             <div className="flex gap-x-8">

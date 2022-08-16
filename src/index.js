@@ -6,12 +6,12 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 
 const client = new ApolloClient({
-  uri: "https://dewan-prod.hasura.app/v1/graphql",
+  uri: "https://sazim.hasura.app/v1/graphql",
   cache: new InMemoryCache(),
   headers: {
     "content-type": "application/json",
     "x-hasura-admin-secret":
-      "F00T4OTJAzzqeVjOS8548U5mAnRCpsPCELH3KaRjlqyfxhdUfJZvLWXz4azFtZDL",
+      "2629cvJ6deFamulhqpCyNrX69tmiDUASJiQ8VDxZB4G4XC2A96Co0ggd04ap8Alj",
   },
 });
 
@@ -19,8 +19,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
+
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
+
   </BrowserRouter>
 );

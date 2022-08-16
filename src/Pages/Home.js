@@ -1,10 +1,14 @@
 import React from 'react';
-import Navbar from '../Components/Shared/Navbar/Navbar';
+
 
 const Home = () => {
+
+
     return (
         <div>
-            <Navbar />
+
+            <h1>home</h1>
+
         </div>
     );
 };

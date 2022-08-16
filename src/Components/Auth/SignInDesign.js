@@ -1,50 +1,47 @@
-import React, { useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useState } from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
-import LoadingSpinner from '../Shared/LoadingSpinner/LoadingSpinner';
+import SocialMediaLogin from "./SocialMediaLogin/SocialMediaLogin";
+import LoadingSpinner from "../Shared/LoadingSpinner/LoadingSpinner";
+import { useQuery } from '@apollo/client';
+import { GET_USER_BY_EMAIL } from "../../queries/gql-queries";
+
 
 const SignInDesign = () => {
   const [show, setShow] = useState(false);
+  const [emailData, setEmailData] = useState("")
   const emailRef = useRef("");
   const passwordRef = useRef("");
-
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  let from = location.state?.from?.pathname || '/'
 
-  //handle error
-  let displayError;
-  if (error) {
-    displayError = (
-      <p className="text-red-500 font-bold text-sm text-center">
-        Error: {error.message}
-      </p>
-    );
-  }
+  // const email = "rokaiahfardous@gmail.com"
+  const { loading, error, data } = useQuery(GET_USER_BY_EMAIL, {
+    variables: { email: emailData }
+  });
+  if (loading) return <LoadingSpinner />
+  if (error) return <p>Something Wrong!!!</p>
 
-  //handle loading
-  if (loading) {
-    <LoadingSpinner></LoadingSpinner>
-  }
+  console.log("display", data);
 
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [user, from, navigate])
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    setEmailData(email);
 
-    console.log(email, password);
+
+
+    data.users.map(user => {
+      if (email === user.email && password === user.password) {
+        console.log("Success");
+      }
+      else {
+        console.log("Wrong!");
+      }
+    })
   };
   return (
     <div className="h-screen flex justify-center items-center">
@@ -80,19 +77,14 @@ const SignInDesign = () => {
             </div>
 
             <div className="flex flex-col gap-2 my-5">
-              {displayError}
+
               <input
                 type="Submit"
                 value="LOGIN"
                 className="bg-btnPrimary text-white px-4 py-1 rounded cursor-pointer w-full hover:bg-black"
               />
 
-              <button
-                className="bg-btnPrimary text-white px-4 py-1 rounded uppercase hover:bg-black"
-                onClick={() => signInWithGoogle()}
-              >
-                Google Login
-              </button>
+              <SocialMediaLogin />
             </div>
           </form>
 

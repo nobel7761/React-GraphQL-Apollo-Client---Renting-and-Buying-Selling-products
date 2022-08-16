@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { BiShow, BiHide } from "react-icons/bi";
+import SocialMediaLogin from "./SocialMediaLogin/SocialMediaLogin";
 
 const SignUpDesign = () => {
   const firstNameRef = useRef("");
@@ -49,7 +50,7 @@ const SignUpDesign = () => {
               <input
                 ref={firstNameRef}
                 type="text"
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="First Name"
                 required
               />
@@ -57,7 +58,7 @@ const SignUpDesign = () => {
               <input
                 ref={lastNameRef}
                 type="text"
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="Last Name"
                 required
               />
@@ -67,7 +68,7 @@ const SignUpDesign = () => {
             <input
               ref={addressRef}
               type="text"
-              className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+              className="w-full px-4 py-1 rounded my-2 border border-gray-700"
               placeholder="Address"
               required
             />
@@ -77,7 +78,7 @@ const SignUpDesign = () => {
               <input
                 ref={emailRef}
                 type="text"
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="Email"
                 required
               />
@@ -85,7 +86,7 @@ const SignUpDesign = () => {
               <input
                 ref={phoneNumberRef}
                 type="tel"
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="Phone Number"
                 required
               />
@@ -96,7 +97,7 @@ const SignUpDesign = () => {
               <input
                 ref={passwordRef}
                 type={show ? "text" : "password"}
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="Password"
                 required
               />
@@ -114,7 +115,7 @@ const SignUpDesign = () => {
               <input
                 ref={confirmPasswordRef}
                 type={show1 ? "text" : "password"}
-                className="w-full px-4 py-1 rounded my-2 border border-gray-300"
+                className="w-full px-4 py-1 rounded my-2 border border-gray-700"
                 placeholder="Confirm Password"
                 required
               />
@@ -127,16 +128,19 @@ const SignUpDesign = () => {
               </div>
             </div>
 
-            <div className="flex justify-center my-5">
+            <div className="flex flex-col gap-2">
               <input
                 type="Submit"
-                text="REGISTER"
-                className="bg-btnPrimary text-white px-4 py-1 rounded"
+                value="REGISTER"
+                className="w-full bg-btnPrimary text-white px-4 py-1 rounded hover:bg-black"
               />
+              <SocialMediaLogin />
             </div>
           </form>
 
-          <p className="text-center">
+
+
+          <p className="text-center mt-5">
             Already have an account?{" "}
             <Link to="/sign-in" className="text-blue-500 font-bold">
               Sign In

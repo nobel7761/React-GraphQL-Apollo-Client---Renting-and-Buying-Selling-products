@@ -4,27 +4,21 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { useState } from "react";
 import SocialMediaLogin from "./SocialMediaLogin/SocialMediaLogin";
 import LoadingSpinner from "../Shared/LoadingSpinner/LoadingSpinner";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 import { GET_USER_BY_EMAIL } from "../../queries/gql-queries";
-
 
 const SignInDesign = () => {
   const [show, setShow] = useState(false);
-  const [emailData, setEmailData] = useState("")
+  const [emailData, setEmailData] = useState("");
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
 
-
-  // const email = "rokaiahfardous@gmail.com"
   const { loading, error, data } = useQuery(GET_USER_BY_EMAIL, {
-    variables: { email: emailData }
+    variables: { email: emailData },
   });
-  if (loading) return <LoadingSpinner />
-  if (error) return <p>Something Wrong!!!</p>
-
-  console.log("display", data);
-
+  if (loading) return <LoadingSpinner />;
+  if (error) return <p>Something Wrong!!!</p>;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,16 +26,13 @@ const SignInDesign = () => {
     const password = passwordRef.current.value;
     setEmailData(email);
 
-
-
-    data.users.map(user => {
+    data.users.map((user) => {
       if (email === user.email && password === user.password) {
         console.log("Success");
-      }
-      else {
+      } else {
         console.log("Wrong!");
       }
-    })
+    });
   };
   return (
     <div className="h-screen flex justify-center items-center">
@@ -77,7 +68,6 @@ const SignInDesign = () => {
             </div>
 
             <div className="flex flex-col gap-2 my-5">
-
               <input
                 type="Submit"
                 value="LOGIN"

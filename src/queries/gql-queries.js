@@ -24,3 +24,12 @@ export const GET_ALL_PRODUCTS = gql`
     }
   }
 `;
+
+export const GET_ALL_CATEGORIES = gql`
+query MyQuery {
+  Categories {
+    name
+    id
+  }
+}
+`

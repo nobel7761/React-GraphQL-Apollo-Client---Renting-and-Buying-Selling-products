@@ -5,7 +5,7 @@ import { GET_ALL_CATEGORIES } from '../queries/gql-queries';
 
 const MultiSelect = () => {
     const { data, isLoading } = useQuery(GET_ALL_CATEGORIES);
-    console.log(data);
+    // console.log(data);
     return (
         <div className='w-1/2 border border-gray-400 rounded my-1'>
             {
